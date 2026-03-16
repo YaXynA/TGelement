@@ -1,0 +1,864 @@
+/*
+ * ═══════════════════════════════════════════════════════════════
+ *  TELEGRAM THEME FOR ELEMENT WEB
+ *  Полный CSS-оверрайд для воспроизведения интерфейса Telegram
+ *  Версия: 1.0.0
+ *
+ *  Как использовать:
+ *  1. Добавь JSON-конфиг в config.json (файл element-telegram-theme.json)
+ *  2. Подключи этот CSS через nginx/apache как дополнительный файл
+ *     или через userscript-расширение (Stylus/Tampermonkey)
+ *  3. Для self-hosted: скопируй в папку element и добавь в index.html:
+ *     <link rel="stylesheet" href="telegram-theme.css">
+ * ═══════════════════════════════════════════════════════════════
+ */
+
+/* ─── ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ (Light / Telegram) ────────────────── */
+:root,
+.cpd-theme-light,
+[class*="theme-light"] {
+  /* Основная палитра Telegram */
+  --tg-blue:         #2AABEE;
+  --tg-blue-dark:    #1A9ADE;
+  --tg-blue-darker:  #0E8ACE;
+  --tg-green:        #4FAE4E;
+  --tg-red:          #FF3B30;
+  --tg-bg:           #EFEFF3;
+  --tg-sidebar:      #2B5278;
+  --tg-sidebar-text: #FFFFFF;
+  --tg-chat-bg:      #FFFFFF;
+  --tg-msg-out:      #EFFDDE;   /* исходящие сообщения */
+  --tg-msg-in:       #FFFFFF;   /* входящие сообщения */
+  --tg-border:       #EDEDED;
+  --tg-text:         #000000;
+  --tg-text-hint:    #8D8D93;
+  --tg-text-blue:    #007AFF;
+  --tg-selected:     #F4F4F5;
+  --tg-unread-bg:    #2AABEE;
+  --tg-unread-text:  #FFFFFF;
+
+  /* Радиусы — Telegram использует большие скругления */
+  --tg-radius-msg:   12px;
+  --tg-radius-ui:    8px;
+  --tg-radius-pill:  20px;
+}
+
+/* ─── ТЁМНАЯ ТЕМА ─────────────────────────────────────────────── */
+.cpd-theme-dark,
+[class*="theme-dark"],
+.mx_MatrixChat.theme-dark {
+  --tg-bg:           #0E1621;
+  --tg-sidebar:      #1C2533;
+  --tg-sidebar-text: #FFFFFF;
+  --tg-chat-bg:      #0E1621;
+  --tg-msg-out:      #2B5278;
+  --tg-msg-in:       #17212B;
+  --tg-border:       #0D1117;
+  --tg-text:         #FFFFFF;
+  --tg-text-hint:    #708499;
+  --tg-selected:     #2B5278;
+  --tg-chat-list-bg: #17212B;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   1. ЛЕВАЯ БОКОВАЯ ПАНЕЛЬ (Spaces / левый рейл)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Левая узкая панель с пространствами */
+.mx_LeftPanel_outerWrapper,
+.mx_SpacePanel {
+  background-color: var(--tg-sidebar) !important;
+  border-right: none !important;
+}
+
+/* Иконки в панели пространств */
+.mx_SpaceButton {
+  border-radius: 50% !important;
+  transition: transform 0.15s ease !important;
+}
+.mx_SpaceButton:hover {
+  transform: scale(1.08) !important;
+}
+.mx_SpaceButton.mx_SpaceButton_active {
+  border-radius: 35% !important;
+}
+
+/* Аватары пространств */
+.mx_SpaceButton .mx_BaseAvatar {
+  border-radius: 50% !important;
+  transition: border-radius 0.2s ease !important;
+}
+.mx_SpaceButton.mx_SpaceButton_active .mx_BaseAvatar {
+  border-radius: 35% !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   2. СПИСОК ЧАТОВ (Room List)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_LeftPanel,
+.mx_RoomList,
+.mx_RoomSearch,
+.mx_LeftPanel_wrapper {
+  background-color: var(--roomlist-background-color, #FFFFFF) !important;
+}
+
+/* Убираем разделители секций */
+.mx_RoomSublist_headerContainer {
+  padding: 8px 16px 4px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--tg-text-hint) !important;
+}
+
+/* Элемент комнаты */
+.mx_RoomTile {
+  border-radius: 0 !important;
+  padding: 8px 12px !important;
+  min-height: 64px !important;
+  transition: background-color 0.1s ease !important;
+  cursor: pointer !important;
+}
+.mx_RoomTile:hover {
+  background-color: var(--tg-selected) !important;
+}
+.mx_RoomTile.mx_RoomTile_selected,
+.mx_RoomTile_selected {
+  background-color: var(--tg-blue) !important;
+}
+.mx_RoomTile.mx_RoomTile_selected * {
+  color: #FFFFFF !important;
+}
+
+/* Аватар комнаты в списке — круглый */
+.mx_RoomTile .mx_DecoratedRoomAvatar .mx_BaseAvatar,
+.mx_RoomTile .mx_BaseAvatar_image {
+  border-radius: 50% !important;
+  width: 48px !important;
+  height: 48px !important;
+}
+
+/* Имя комнаты */
+.mx_RoomTile_name {
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+}
+
+/* Превью последнего сообщения */
+.mx_RoomTile_messagePreview {
+  font-size: 13px !important;
+  color: var(--tg-text-hint) !important;
+  margin-top: 2px !important;
+}
+.mx_RoomTile_selected .mx_RoomTile_messagePreview {
+  color: rgba(255,255,255,0.7) !important;
+}
+
+/* Время */
+.mx_RoomTile_timestamp {
+  font-size: 12px !important;
+  color: var(--tg-text-hint) !important;
+}
+.mx_RoomTile_selected .mx_RoomTile_timestamp {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+/* Счётчик непрочитанных — пилюля Telegram */
+.mx_NotificationBadge {
+  background-color: var(--tg-blue) !important;
+  border-radius: 20px !important;
+  min-width: 20px !important;
+  height: 20px !important;
+  padding: 0 6px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  line-height: 20px !important;
+}
+.mx_RoomTile_selected .mx_NotificationBadge {
+  background-color: rgba(255,255,255,0.9) !important;
+  color: var(--tg-blue) !important;
+}
+.mx_NotificationBadge_muted {
+  background-color: #ACACAC !important;
+}
+
+/* Поиск по чатам */
+.mx_RoomSearch {
+  margin: 8px 10px !important;
+  border-radius: 20px !important;
+  background-color: var(--tg-selected) !important;
+  border: none !important;
+  padding: 0 12px !important;
+  height: 36px !important;
+}
+.mx_RoomSearch_input {
+  background: transparent !important;
+  font-size: 14px !important;
+}
+.mx_RoomSearch_icon {
+  opacity: 0.5 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   3. ХЕДЕР ЧАТА (верхняя панель)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_RoomHeader {
+  background-color: var(--tg-chat-bg, #FFFFFF) !important;
+  border-bottom: 1px solid var(--tg-border) !important;
+  padding: 0 16px !important;
+  min-height: 56px !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08) !important;
+}
+
+.mx_RoomHeader_name {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--tg-text) !important;
+}
+
+.mx_RoomHeader_topic,
+.mx_RoomTopic {
+  font-size: 13px !important;
+  color: var(--tg-text-hint) !important;
+  font-weight: 400 !important;
+}
+
+/* Кнопки действий в хедере */
+.mx_RoomHeader_button,
+.mx_HeaderButtons .mx_AccessibleButton {
+  border-radius: 50% !important;
+  width: 36px !important;
+  height: 36px !important;
+  color: var(--tg-blue) !important;
+  transition: background-color 0.15s !important;
+}
+.mx_RoomHeader_button:hover,
+.mx_HeaderButtons .mx_AccessibleButton:hover {
+  background-color: var(--tg-selected) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   4. ФОНОВЫЙ ПАТТЕРН ЧАТА (Telegram wallpaper)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_RoomView_messagePanel,
+.mx_ScrollPanel,
+.mx_EventPanel {
+  background-color: var(--tg-bg) !important;
+  /* Тонкий паттерн как в Telegram */
+  background-image:
+    radial-gradient(circle at 100% 150%, #E8EDF2 24%, #EFEFF3 25%,
+      #EFEFF3 28%, #E8EDF2 29%, #E8EDF2 36%, #EFEFF3 36%, #EFEFF3 40%,
+      transparent 40%, transparent),
+    radial-gradient(circle at 0 150%, #E8EDF2 24%, #EFEFF3 25%,
+      #EFEFF3 28%, #E8EDF2 29%, #E8EDF2 36%, #EFEFF3 36%, #EFEFF3 40%,
+      transparent 40%, transparent) !important;
+  background-size: 75px 50px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   5. ПУЗЫРИ СООБЩЕНИЙ (главное отличие Telegram от Element)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Строка события */
+.mx_EventTile {
+  max-width: 100% !important;
+  padding: 2px 16px !important;
+  clear: both !important;
+}
+
+/* Контейнер пузыря */
+.mx_EventTile_bubble,
+.mx_EventTile .mx_MTextBody,
+.mx_EventTile .mx_EventTile_content {
+  max-width: 480px !important;
+}
+
+/* === ВХОДЯЩИЕ СООБЩЕНИЯ (слева) === */
+.mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line,
+.mx_EventTile_incoming .mx_EventTile_line {
+  background-color: var(--tg-msg-in) !important;
+  border-radius: 2px 12px 12px 12px !important;
+  padding: 8px 12px 8px 12px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.13) !important;
+  margin-left: 56px !important;   /* место под аватар */
+  margin-right: auto !important;
+  max-width: 75% !important;
+  float: left !important;
+  clear: both !important;
+  width: fit-content !important;
+  position: relative !important;
+}
+
+/* Хвостик входящего — треугольник снизу-слева */
+.mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line::before {
+  content: '' !important;
+  position: absolute !important;
+  left: -8px !important;
+  top: 0 !important;
+  border-width: 0 8px 8px 0 !important;
+  border-style: solid !important;
+  border-color: transparent var(--tg-msg-in) transparent transparent !important;
+}
+
+/* === ИСХОДЯЩИЕ СООБЩЕНИЯ (справа) === */
+.mx_EventTile_ourMessage .mx_EventTile_line,
+.mx_EventTile.mx_EventTile_ourMessage .mx_EventTile_line {
+  background-color: var(--tg-msg-out) !important;
+  border-radius: 12px 2px 12px 12px !important;
+  padding: 8px 12px 8px 12px !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.13) !important;
+  margin-right: 16px !important;
+  margin-left: auto !important;
+  max-width: 75% !important;
+  float: right !important;
+  clear: both !important;
+  width: fit-content !important;
+  position: relative !important;
+}
+
+/* Хвостик исходящего */
+.mx_EventTile_ourMessage .mx_EventTile_line::after {
+  content: '' !important;
+  position: absolute !important;
+  right: -8px !important;
+  top: 0 !important;
+  border-width: 0 0 8px 8px !important;
+  border-style: solid !important;
+  border-color: transparent transparent transparent var(--tg-msg-out) !important;
+}
+
+/* Убираем обводку при hover */
+.mx_EventTile:hover .mx_EventTile_line,
+.mx_EventTile.mx_EventTile_selected .mx_EventTile_line {
+  background-color: inherit !important;
+  outline: none !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2) !important;
+}
+
+/* Имя отправителя */
+.mx_EventTile .mx_SenderProfile {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  margin-bottom: 2px !important;
+  color: var(--tg-blue) !important;
+}
+
+/* Текст сообщения */
+.mx_EventTile .mx_MTextBody {
+  font-size: 14.5px !important;
+  line-height: 1.5 !important;
+  color: var(--tg-text) !important;
+  word-break: break-word !important;
+}
+
+/* Время сообщения (справа внизу пузыря) */
+.mx_MessageTimestamp,
+.mx_EventTile_line .mx_EventTile_receiptSent {
+  font-size: 11px !important;
+  color: var(--tg-text-hint) !important;
+  float: right !important;
+  margin-left: 8px !important;
+  margin-top: 4px !important;
+  opacity: 0.8 !important;
+}
+
+/* Галочки прочитанности */
+.mx_ReadReceiptGroup,
+.mx_EventTile_readAvatars {
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+/* Аватар отправителя (слева от входящих) */
+.mx_EventTile .mx_BaseAvatar {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  left: 16px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   6. МЕДИА-СООБЩЕНИЯ (фото, видео, файлы)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Картинки — скругления как в Telegram */
+.mx_MImageBody .mx_MImageBody_thumbnail_container,
+.mx_MVideoBody video {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+/* Файловые сообщения */
+.mx_MFileBody {
+  border-radius: 8px !important;
+  padding: 8px !important;
+}
+
+/* Голосовые сообщения */
+.mx_MVoiceMessageBody {
+  border-radius: 20px !important;
+}
+
+/* Прогресс аудио */
+.mx_AudioPlayer_seek::-webkit-slider-thumb {
+  background-color: var(--tg-blue) !important;
+}
+.mx_AudioPlayer_seek::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, var(--tg-blue) var(--value), #E0E0E0 var(--value)) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   7. СИСТЕМНЫЕ СООБЩЕНИЯ (join/leave/etc)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_EventTile_info .mx_EventTile_line,
+.mx_EventTile[data-layout="group"] .mx_EventTile_info {
+  background: transparent !important;
+  box-shadow: none !important;
+  text-align: center !important;
+  color: var(--tg-text-hint) !important;
+  font-size: 12px !important;
+  float: none !important;
+  max-width: 100% !important;
+  margin: 4px auto !important;
+}
+
+/* Разделитель даты */
+.mx_TimelineSeparator,
+.mx_DateSeparator {
+  display: flex !important;
+  align-items: center !important;
+  margin: 12px 0 !important;
+}
+.mx_TimelineSeparator_pill,
+.mx_DateSeparator .mx_DateSeparator_dateContent {
+  background: rgba(0,0,0,0.15) !important;
+  color: #FFFFFF !important;
+  border-radius: 12px !important;
+  padding: 4px 12px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  margin: 0 auto !important;
+  backdrop-filter: blur(4px) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   8. ПОЛЕ ВВОДА СООБЩЕНИЯ (Composer)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_MessageComposer {
+  background-color: var(--tg-chat-bg, #FFFFFF) !important;
+  border-top: 1px solid var(--tg-border) !important;
+  padding: 8px 12px !important;
+  min-height: 56px !important;
+}
+
+/* Контейнер текстового поля */
+.mx_MessageComposer_wrapper {
+  border-radius: 22px !important;
+  background-color: var(--tg-selected, #F4F4F5) !important;
+  border: none !important;
+  padding: 6px 12px !important;
+  display: flex !important;
+  align-items: flex-end !important;
+}
+
+/* Само текстовое поле */
+.mx_MessageComposer_editor,
+.mx_BasicMessageComposer {
+  font-size: 15px !important;
+  line-height: 1.5 !important;
+  min-height: 24px !important;
+  max-height: 200px !important;
+  overflow-y: auto !important;
+}
+
+/* Placeholder */
+.mx_BasicMessageComposer .mx_BasicMessageComposer_input:empty::before {
+  content: attr(data-placeholder) !important;
+  color: var(--tg-text-hint) !important;
+  pointer-events: none !important;
+}
+
+/* Кнопка отправки — синий круг */
+.mx_MessageComposer_send {
+  background-color: var(--tg-blue) !important;
+  border-radius: 50% !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: background-color 0.15s, transform 0.1s !important;
+  margin-left: 8px !important;
+  flex-shrink: 0 !important;
+}
+.mx_MessageComposer_send:hover {
+  background-color: var(--tg-blue-dark) !important;
+  transform: scale(1.05) !important;
+}
+.mx_MessageComposer_send:active {
+  transform: scale(0.95) !important;
+}
+.mx_MessageComposer_send svg,
+.mx_MessageComposer_send .mx_MessageComposer_sendIcon {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
+}
+
+/* Кнопки скрепки, эмодзи */
+.mx_MessageComposer_actions button,
+.mx_MessageComposer_button {
+  color: var(--tg-text-hint) !important;
+  transition: color 0.15s !important;
+}
+.mx_MessageComposer_actions button:hover,
+.mx_MessageComposer_button:hover {
+  color: var(--tg-blue) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   9. REPLY / ЦИТАТА
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_ReplyPreview,
+.mx_ReplyChain {
+  border-left: 3px solid var(--tg-blue) !important;
+  padding-left: 8px !important;
+  margin-bottom: 6px !important;
+  border-radius: 0 4px 4px 0 !important;
+  background: rgba(42, 171, 238, 0.08) !important;
+}
+.mx_ReplyChain_wrapper {
+  padding: 4px 0 !important;
+}
+.mx_ReplyPreview_name,
+.mx_ReplyChain .mx_SenderProfile {
+  color: var(--tg-blue) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+}
+.mx_ReplyPreview_message,
+.mx_ReplyChain .mx_MTextBody {
+  font-size: 13px !important;
+  color: var(--tg-text-hint) !important;
+  max-height: 3em !important;
+  overflow: hidden !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   10. РЕАКЦИИ НА СООБЩЕНИЯ
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_ReactionsRow {
+  margin-top: 4px !important;
+  gap: 4px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+.mx_ReactionsRowButton {
+  background-color: rgba(42, 171, 238, 0.1) !important;
+  border: 1px solid rgba(42, 171, 238, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 2px 8px !important;
+  font-size: 13px !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s !important;
+}
+.mx_ReactionsRowButton:hover {
+  background-color: rgba(42, 171, 238, 0.2) !important;
+}
+.mx_ReactionsRowButton.mx_ReactionsRowButton_selected {
+  background-color: var(--tg-blue) !important;
+  border-color: var(--tg-blue) !important;
+  color: #FFFFFF !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   11. ПРАВАЯ ПАНЕЛЬ (InfoPanel / Member List)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_RightPanel {
+  background-color: var(--tg-chat-bg, #FFFFFF) !important;
+  border-left: 1px solid var(--tg-border) !important;
+}
+
+.mx_RoomSummaryCard_header,
+.mx_UserInfo_header {
+  background: linear-gradient(
+    135deg,
+    var(--tg-sidebar) 0%,
+    var(--tg-blue) 100%
+  ) !important;
+  color: #FFFFFF !important;
+  padding: 24px 16px !important;
+}
+
+.mx_RoomSummaryCard_header h1,
+.mx_UserInfo_displayName {
+  color: #FFFFFF !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+/* Участник чата */
+.mx_EntityTile {
+  border-radius: 8px !important;
+  padding: 8px 12px !important;
+  transition: background-color 0.1s !important;
+}
+.mx_EntityTile:hover {
+  background-color: var(--tg-selected) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   12. ДИАЛОГИ И МОДАЛЬНЫЕ ОКНА
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_Dialog {
+  border-radius: 14px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.2) !important;
+  overflow: hidden !important;
+}
+.mx_Dialog_header {
+  padding: 20px 24px 12px !important;
+  border-bottom: 1px solid var(--tg-border) !important;
+}
+.mx_Dialog_title {
+  font-size: 17px !important;
+  font-weight: 600 !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   13. КНОПКИ
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_AccessibleButton.mx_AccessibleButton_hasKind.mx_AccessibleButton_kind_primary,
+.mx_Dialog_primary {
+  background-color: var(--tg-blue) !important;
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: background-color 0.15s, transform 0.1s !important;
+}
+.mx_AccessibleButton.mx_AccessibleButton_kind_primary:hover {
+  background-color: var(--tg-blue-dark) !important;
+}
+.mx_AccessibleButton.mx_AccessibleButton_kind_primary:active {
+  transform: scale(0.98) !important;
+}
+
+.mx_AccessibleButton.mx_AccessibleButton_kind_secondary {
+  border: 1px solid var(--tg-blue) !important;
+  color: var(--tg-blue) !important;
+  border-radius: 8px !important;
+}
+.mx_AccessibleButton.mx_AccessibleButton_kind_danger {
+  background-color: var(--tg-red) !important;
+  border-radius: 8px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   14. ПОЛЯ ВВОДА / ФОРМЫ
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_Field input,
+.mx_Field textarea {
+  border-radius: 8px !important;
+  border: 1px solid var(--tg-border) !important;
+  font-size: 14px !important;
+  transition: border-color 0.15s !important;
+}
+.mx_Field input:focus,
+.mx_Field textarea:focus {
+  border-color: var(--tg-blue) !important;
+  box-shadow: 0 0 0 2px rgba(42, 171, 238, 0.2) !important;
+  outline: none !important;
+}
+.mx_Field label {
+  color: var(--tg-blue) !important;
+  font-size: 12px !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   15. ВСПЛЫВАЮЩИЕ МЕНЮ (Context Menu)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_ContextualMenu {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15) !important;
+  overflow: hidden !important;
+  border: none !important;
+}
+.mx_ContextualMenu_item {
+  padding: 10px 16px !important;
+  font-size: 14px !important;
+  transition: background-color 0.1s !important;
+}
+.mx_ContextualMenu_item:hover {
+  background-color: var(--tg-selected) !important;
+}
+.mx_ContextualMenu_item.mx_ContextualMenu_itemDanger {
+  color: var(--tg-red) !important;
+}
+.mx_ContextualMenu_item.mx_ContextualMenu_itemDanger:hover {
+  background-color: rgba(255, 59, 48, 0.08) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   16. ТОАСТЫ И УВЕДОМЛЕНИЯ
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_Toast_wrapper,
+.mx_Toasts {
+  border-radius: 12px !important;
+}
+.mx_Toast {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   17. СКРОЛЛБАР — тонкий в стиле macOS/Telegram
+   ═══════════════════════════════════════════════════════════════ */
+
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: rgba(0,0,0,0.2) transparent !important;
+}
+*::-webkit-scrollbar {
+  width: 4px !important;
+  height: 4px !important;
+}
+*::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,0.2) !important;
+  border-radius: 4px !important;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0,0,0,0.35) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   18. АВАТАРЫ — всегда круглые
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_BaseAvatar,
+.mx_BaseAvatar_image {
+  border-radius: 50% !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   19. СТАТУС ОНЛАЙН — зелёная точка (как в Telegram)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_EntityTile_presenceOnline::after,
+.mx_DecoratedRoomAvatar_icon_online {
+  background-color: var(--tg-green) !important;
+  border-radius: 50% !important;
+  border: 2px solid #FFFFFF !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   20. ТЁМНАЯ ТЕМА — дополнительные правила
+   ═══════════════════════════════════════════════════════════════ */
+
+.cpd-theme-dark .mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line,
+.theme-dark .mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line {
+  background-color: #17212B !important;
+  color: #FFFFFF !important;
+}
+.cpd-theme-dark .mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line::before,
+.theme-dark .mx_EventTile:not(.mx_EventTile_ourMessage) .mx_EventTile_line::before {
+  border-color: transparent #17212B transparent transparent !important;
+}
+
+.cpd-theme-dark .mx_EventTile_ourMessage .mx_EventTile_line,
+.theme-dark .mx_EventTile_ourMessage .mx_EventTile_line {
+  background-color: #2B5278 !important;
+}
+.cpd-theme-dark .mx_EventTile_ourMessage .mx_EventTile_line::after,
+.theme-dark .mx_EventTile_ourMessage .mx_EventTile_line::after {
+  border-color: transparent transparent transparent #2B5278 !important;
+}
+
+.cpd-theme-dark .mx_MessageComposer_wrapper,
+.theme-dark .mx_MessageComposer_wrapper {
+  background-color: #17212B !important;
+}
+
+.cpd-theme-dark *::-webkit-scrollbar-thumb,
+.theme-dark *::-webkit-scrollbar-thumb {
+  background-color: rgba(255,255,255,0.15) !important;
+}
+.cpd-theme-dark *::-webkit-scrollbar-thumb:hover,
+.theme-dark *::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255,255,255,0.25) !important;
+}
+
+.cpd-theme-dark .mx_DateSeparator .mx_DateSeparator_dateContent,
+.theme-dark .mx_DateSeparator .mx_DateSeparator_dateContent {
+  background: rgba(255,255,255,0.12) !important;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   21. ЭКРАН ВХОДА (Login Screen)
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_AuthPage {
+  background: linear-gradient(135deg, #2B5278 0%, #2AABEE 100%) !important;
+}
+.mx_AuthBody {
+  border-radius: 14px !important;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.25) !important;
+  overflow: hidden !important;
+}
+.mx_AuthHeader_logo {
+  /* Можно заменить на лого Telegram, если нужно */
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   22. ПЕРЕХОДЫ И АНИМАЦИИ
+   ═══════════════════════════════════════════════════════════════ */
+
+.mx_RoomView {
+  animation: fadeIn 0.15s ease !important;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.mx_RoomTile {
+  transition: background-color 0.12s ease !important;
+}
