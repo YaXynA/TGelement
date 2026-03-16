@@ -1,35 +1,99 @@
 {
-  "name": "Telegram Dark",
-  "is_dark": true,
-  "colors": {
-    "primary-color": "#229ED9",
-    "accent-color": "#229ED9",
-    "secondary-content": "#229ED9",
-    "links": "#229ED9",
-
-    "background-color": "#0F1621",
-    "roomlist-background-color": "#18222D",
-    "roomlist-header-background-color": "#18222D",
-    "header-background-color": "#18222D",
-
-    "message-background-color": "#2B374A",
-    "self-message-background-color": "#229ED9",
-    "message-text-color": "#FFFFFF",
-    "self-message-text-color": "#FFFFFF",
-
-    "timeline-background-color": "#0F1621",
-    "composer-background-color": "#18222D",
-
-    "text-primary-color": "#FFFFFF",
-    "text-secondary-color": "#A0A8B5",
-    "text-tertiary-color": "#6E7A8A",
-
-    "avatar-background-color": "#229ED9",
-    "button-primary-bg-color": "#229ED9",
-    "button-secondary-bg-color": "#2B374A",
-
-    "border-color": "#2B374A",
-    "input-border-color": "#2B374A",
-    "focus-border-color": "#229ED9"
+  "setting_defaults": {
+    "custom_themes": [
+      {
+        "name": "Telegram",
+        "is_dark": false,
+        "fonts": {
+          "faces": [],
+          "general": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
+          "monospace": "'Courier New', monospace"
+        },
+        "colors": {
+          "accent-color": "#2AABEE",
+          "primary-color": "#2AABEE",
+          "warning-color": "#FF3B30",
+          "sidebar-color": "#2B5278",
+          "roomlist-background-color": "#FFFFFF",
+          "roomlist-text-color": "#000000",
+          "roomlist-text-secondary-color": "#999999",
+          "roomlist-highlights-color": "#F4F4F5",
+          "roomlist-separator-color": "#EDEDED",
+          "timeline-background-color": "#EFEFF3",
+          "timeline-text-color": "#000000",
+          "timeline-text-secondary-color": "#8D8D93",
+          "timeline-highlights-color": "#FFFFFF",
+          "username-colors": [
+            "#2AABEE",
+            "#E17076",
+            "#7BC862",
+            "#E5C07B",
+            "#65BFFF",
+            "#FF8EB4",
+            "#CB86DB",
+            "#F4A459"
+          ],
+          "avatar-background-colors": [
+            "#2AABEE",
+            "#E17076",
+            "#7BC862"
+          ]
+        },
+        "compound": {
+          "--cpd-color-icon-accent-tertiary": "var(--cpd-color-blue-300)",
+          "--cpd-color-text-action-accent": "#2AABEE",
+          "--cpd-color-bg-action-primary-rest": "#2AABEE",
+          "--cpd-color-bg-action-primary-hovered": "#1A9ADE",
+          "--cpd-color-bg-action-primary-pressed": "#0E8ACE",
+          "--cpd-color-text-on-solid-primary": "#FFFFFF"
+        }
+      },
+      {
+        "name": "Telegram Dark",
+        "is_dark": true,
+        "fonts": {
+          "general": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif",
+          "monospace": "'Courier New', monospace"
+        },
+        "colors": {
+          "accent-color": "#2AABEE",
+          "primary-color": "#2AABEE",
+          "warning-color": "#FF3B30",
+          "sidebar-color": "#1C2533",
+          "roomlist-background-color": "#17212B",
+          "roomlist-text-color": "#FFFFFF",
+          "roomlist-text-secondary-color": "#708499",
+          "roomlist-highlights-color": "#2B5278",
+          "roomlist-separator-color": "#0D1117",
+          "timeline-background-color": "#0E1621",
+          "timeline-text-color": "#FFFFFF",
+          "timeline-text-secondary-color": "#708499",
+          "timeline-highlights-color": "#17212B",
+          "username-colors": [
+            "#2AABEE",
+            "#E17076",
+            "#7BC862",
+            "#E5C07B",
+            "#65BFFF",
+            "#FF8EB4",
+            "#CB86DB",
+            "#F4A459"
+          ],
+          "avatar-background-colors": [
+            "#2AABEE",
+            "#E17076",
+            "#7BC862"
+          ]
+        },
+        "compound": {
+          "--cpd-color-icon-accent-tertiary": "var(--cpd-color-blue-800)",
+          "--cpd-color-text-action-accent": "#2AABEE",
+          "--cpd-color-bg-action-primary-rest": "#2AABEE",
+          "--cpd-color-bg-action-primary-hovered": "#1A9ADE",
+          "--cpd-color-bg-action-primary-pressed": "#0E8ACE"
+        }
+      }
+    ],
+    "default_theme": "custom-Telegram"
   }
 }
