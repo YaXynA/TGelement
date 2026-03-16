@@ -1,61 +1,57 @@
-"setting_defaults": {
-    "custom_themes": [
-        {
-            "name": "PM",
-            "is_dark": false,
-            "fonts": {
-                "faces": [
-                    {
-                        "font-family": "Roboto Mono",
-                        "src": [
-                            {
-                                "url": "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap",
-                                "format": "truetype"
-                            }
-                        ]
-                    }
-                ],
-                "general": "Roboto Mono, monospace",
-                "monospace": "Roboto Mono, monospace"
-            },
-            "colors": {
-                "accent-color": "#3596fc",
-                "primary-color": "#368bd6",
-                "warning-color": "#ff4b55",
-                "sidebar-color": "#27303a",
-                "roomlist-background-color": "#f3f8fd",
-                "roomlist-text-color": "#2e2f32",
-                "roomlist-text-secondary-color": "#61708b",
-                "roomlist-highlights-color": "#ffffff",
-                "roomlist-separator-color": "#e3e8f0",
-                "timeline-background-color": "#ffffff",
-                "timeline-text-color": "#2e2f32",
-                "timeline-text-secondary-color": "#61708b",
-                "timeline-highlights-color": "#f3f8fd"
-            },
-            "compound": {
-                "--cpd-color-icon-accent-tertiary": "var(--cpd-color-blue-800)",
-                "--cpd-color-text-action-accent": "var(--cpd-color-blue-900)"
-            }
-        },
-        {
-            "name": "Deep Purple",
-            "is_dark": true,
-            "colors": {
-                "accent-color": "#6503b3",
-                "primary-color": "#368bd6",
-                "warning-color": "#b30356",
-                "sidebar-color": "#15171B",
-                "roomlist-background-color": "#22262E",
-                "roomlist-text-color": "#A1B2D1",
-                "roomlist-text-secondary-color": "#EDF3FF",
-                "roomlist-highlights-color": "#343A46",
-                "roomlist-separator-color": "#a1b2d1",
-                "timeline-background-color": "#181b21",
-                "timeline-text-color": "#EDF3FF",
-                "timeline-text-secondary-color": "#A1B2D1",
-                "timeline-highlights-color": "#22262E"
-            }
-        }
-    ]
+{
+
+  "name": "Telegram Dark",
+
+  "is_dark": true,
+
+  "colors": {
+
+    "primary-color": "#229ED9",
+
+    "accent-color": "#229ED9",
+
+    "secondary-content": "#229ED9",
+
+    "links": "#229ED9",
+
+    "background-color": "#0F1621",
+
+    "roomlist-background-color": "#18222D",
+
+    "roomlist-header-background-color": "#18222D",
+
+    "header-background-color": "#18222D",
+
+    "message-background-color": "#2B374A",
+
+    "self-message-background-color": "#229ED9",
+
+    "message-text-color": "#FFFFFF",
+
+    "self-message-text-color": "#FFFFFF",
+
+    "timeline-background-color": "#0F1621",
+
+    "composer-background-color": "#18222D",
+
+    "text-primary-color": "#FFFFFF",
+
+    "text-secondary-color": "#A0A8B5",
+
+    "text-tertiary-color": "#6E7A8A",
+
+    "avatar-background-color": "#229ED9",
+
+    "button-primary-bg-color": "#229ED9",
+
+    "button-secondary-bg-color": "#2B374A",
+
+    "border-color": "#2B374A",
+
+    "input-border-color": "#2B374A",
+
+    "focus-border-color": "#229ED9"
+
+  }
+
 }
