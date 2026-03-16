@@ -1,40 +1,61 @@
-{
-    "name": "Telegram Dark",
-    "is_dark": true,
-    "colors": {
-        "accent-color": "#2AABEE",
-        "primary-color": "#2AABEE",
-        "warning-color": "#FF3B30",
-        "sidebar-color": "#1C2533",
-        "roomlist-background-color": "#17212B",
-        "roomlist-text-color": "#FFFFFF",
-        "roomlist-text-secondary-color": "#708499",
-        "roomlist-highlights-color": "#2B5278",
-        "roomlist-separator-color": "#0D1117",
-        "timeline-background-color": "#0E1621",
-        "timeline-text-color": "#FFFFFF",
-        "timeline-text-secondary-color": "#708499",
-        "timeline-highlights-color": "#17212B",
-        "username-colors": [
-            "#2AABEE",
-            "#E17076",
-            "#7BC862",
-            "#E5C07B",
-            "#65BFFF",
-            "#FF8EB4",
-            "#CB86DB",
-            "#F4A459"
-        ],
-        "avatar-background-colors": [
-            "#2AABEE",
-            "#E17076",
-            "#7BC862"
-        ]
-    },
-    "compound": {
-        "--cpd-color-text-action-accent": "#2AABEE",
-        "--cpd-color-bg-action-primary-rest": "#2AABEE",
-        "--cpd-color-bg-action-primary-hovered": "#1A9ADE",
-        "--cpd-color-bg-action-primary-pressed": "#0E8ACE"
-    }
+"setting_defaults": {
+    "custom_themes": [
+        {
+            "name": "PM",
+            "is_dark": false,
+            "fonts": {
+                "faces": [
+                    {
+                        "font-family": "Roboto Mono",
+                        "src": [
+                            {
+                                "url": "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600&display=swap",
+                                "format": "truetype"
+                            }
+                        ]
+                    }
+                ],
+                "general": "Roboto Mono, monospace",
+                "monospace": "Roboto Mono, monospace"
+            },
+            "colors": {
+                "accent-color": "#3596fc",
+                "primary-color": "#368bd6",
+                "warning-color": "#ff4b55",
+                "sidebar-color": "#27303a",
+                "roomlist-background-color": "#f3f8fd",
+                "roomlist-text-color": "#2e2f32",
+                "roomlist-text-secondary-color": "#61708b",
+                "roomlist-highlights-color": "#ffffff",
+                "roomlist-separator-color": "#e3e8f0",
+                "timeline-background-color": "#ffffff",
+                "timeline-text-color": "#2e2f32",
+                "timeline-text-secondary-color": "#61708b",
+                "timeline-highlights-color": "#f3f8fd"
+            },
+            "compound": {
+                "--cpd-color-icon-accent-tertiary": "var(--cpd-color-blue-800)",
+                "--cpd-color-text-action-accent": "var(--cpd-color-blue-900)"
+            }
+        },
+        {
+            "name": "Deep Purple",
+            "is_dark": true,
+            "colors": {
+                "accent-color": "#6503b3",
+                "primary-color": "#368bd6",
+                "warning-color": "#b30356",
+                "sidebar-color": "#15171B",
+                "roomlist-background-color": "#22262E",
+                "roomlist-text-color": "#A1B2D1",
+                "roomlist-text-secondary-color": "#EDF3FF",
+                "roomlist-highlights-color": "#343A46",
+                "roomlist-separator-color": "#a1b2d1",
+                "timeline-background-color": "#181b21",
+                "timeline-text-color": "#EDF3FF",
+                "timeline-text-secondary-color": "#A1B2D1",
+                "timeline-highlights-color": "#22262E"
+            }
+        }
+    ]
 }
